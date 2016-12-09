@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 //       00000000001111111111222222222233333333334444444444
 //       01234567890123456789012345678901234567890123456789
@@ -15,12 +16,15 @@
 
 int printDisplay(char *display){
   int i, j;
+  printf("|--------------------------------------------------|\n");
   for(i=0; i<6; i++){
+    printf("|");
     for(j=0; j<50; j++)
       printf("%c", display[i*50+j]);
-    printf("\n");
+    printf("|\n");
   }
-  printf("\n");
+  printf("|--------------------------------------------------|\n");
+  usleep(100000);
   return 0;
 }
 
@@ -34,6 +38,8 @@ int rotateCol(char *display, int col, int qtd){
     display[col] = aux;
     qtd--;
   }
+  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+  printDisplay(display);
   return 0;
 }
 
@@ -47,21 +53,21 @@ int rotateRow(char *display, int row, int qtd){
     display[row*50] = aux;
     qtd--;
   }
+  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+  printDisplay(display);
   return 0;
 }
-
 
 int rect(char *display, int tamX, int tamY){
   int i, j;
   for(i=0; i<tamY; i++)
     for(j=0; j<tamX; j++)
       display[i*50+j]='#';
+  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+  printDisplay(display);
   return 0;
 }
 
-//rotate row y=0 by 10
-//rotate column x=0 by 1
-//rect 9x1
 int parseComando(char *display, char *linha){
   char *cmd;
   cmd = strtok(linha, " ");
@@ -102,13 +108,15 @@ int main(){
   while (fgets(buffer, 1024, ficheiro)!=NULL){
 	  linha = strtok(buffer, "\n");
     parseComando(display, linha);
-    printDisplay(display);
-    printf("\n");
+//    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+//    printDisplay(display);
+//    usleep(100000);
 	}
   fclose(ficheiro);
   for(i=0; i< 300; i++)
     if(display[i] == '#')
       sum++;
-  printf("Bright Pixels: %d\n", sum);
+   printf("|-------- Pixels On: %3d | Pixels Off: %3d --------|\n", sum, 300-sum);
+   printf("|--------------------------------------------------|\n");
   return 0;
 }
