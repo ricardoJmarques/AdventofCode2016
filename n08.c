@@ -24,7 +24,7 @@ int printDisplay(char *display){
     printf("|\n");
   }
   printf("|--------------------------------------------------|\n");
-  usleep(100000);
+  usleep(30000);
   return 0;
 }
 
@@ -37,9 +37,9 @@ int rotateCol(char *display, int col, int qtd){
       display[i*50+col] = display[(i-1)*50+col];
     display[col] = aux;
     qtd--;
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    printDisplay(display);
   }
-  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-  printDisplay(display);
   return 0;
 }
 
@@ -52,9 +52,9 @@ int rotateRow(char *display, int row, int qtd){
       display[row*50+i] = display[row*50+(i-1)];
     display[row*50] = aux;
     qtd--;
+    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    printDisplay(display);
   }
-  printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-  printDisplay(display);
   return 0;
 }
 
